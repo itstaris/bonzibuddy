@@ -53,6 +53,9 @@ var freeflying : bool = false
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 
+func kill():
+	get_tree().reload_current_scene()
+
 func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
@@ -176,3 +179,7 @@ func check_input_mappings():
 	if can_freefly and not InputMap.has_action(input_freefly):
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
+
+#func _on_area_3d_body_entered(body: Node3D) -> void:
+	#if body.is_in_group("enemy"):
+		#kill()

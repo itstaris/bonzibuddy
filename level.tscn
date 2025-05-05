@@ -40,7 +40,7 @@ environment = SubResource("Environment_jka67")
 [node name="player" parent="." instance=ExtResource("1_vonw3")]
 
 [node name="demon" parent="." instance=ExtResource("3_oi3di")]
-transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -3.92949)
+transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -18.4125)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_oi3di")
@@ -86,3 +86,7 @@ material = ExtResource("2_0b4ue")
 transform = Transform3D(-1.34193e-08, 0, 0.0105893, 0, 6.99993, 0, -0.306998, 0, -4.62873e-10, -0.42425, 2.34175, 0.311082)
 size = Vector3(4.53079, 0.737411, 1)
 material = ExtResource("2_0b4ue")
+
+[connection signal="body_entered" from="demon/Area3D" to="player" method="_on_area_3d_body_entered"]
+
+[editable path="demon"]

@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://w36cmkvhkaoe" path="res://scripts/demon.gd" id="1_3t42y"]
 [ext_resource type="Texture2D" uid="uid://bqpvnsilfwsed" path="res://assets/bonzibuddy_sprites.png" id="1_ye80u"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hrfm1"]
+radius = 0.191335
+height = 0.825096
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3t42y"]
 atlas = ExtResource("1_ye80u")
 region = Rect2(0, 290, 119, 95)
@@ -263,23 +267,24 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hrfm1"]
-radius = 0.191335
-height = 0.825096
-
-[node name="demon" type="CharacterBody3D"]
+[node name="demon" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, 0, 0, 0)
 script = ExtResource("1_3t42y")
+
+[node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0124512, 0, -0.00100708)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_hrfm1")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a8juw")
 animation = &"idle"
 frame_progress = 0.412111
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0124512, 0, -0.00100708)
-shape = SubResource("CapsuleShape3D_hrfm1")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hrfm1")
