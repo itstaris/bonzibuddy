@@ -1,5 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://vtk75vmymax"]
+[gd_scene load_steps=41 format=3 uid="uid://vtk75vmymax"]
 
+[ext_resource type="Script" uid="uid://w36cmkvhkaoe" path="res://scripts/demon.gd" id="1_3t42y"]
 [ext_resource type="Texture2D" uid="uid://bqpvnsilfwsed" path="res://assets/bonzibuddy_sprites.png" id="1_ye80u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3t42y"]
@@ -268,6 +269,9 @@ height = 0.825096
 
 [node name="demon" type="CharacterBody3D"]
 transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, 0, 0, 0)
+script = ExtResource("1_3t42y")
+speed = null
+acceleration = null
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a8juw")
@@ -277,3 +281,5 @@ frame_progress = 0.412111
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0124512, 0, -0.00100708)
 shape = SubResource("CapsuleShape3D_hrfm1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

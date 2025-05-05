@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://proto_controller/proto_controller.tscn" id="1_vonw3"]
 [ext_resource type="Material" uid="uid://dbe3cb4st6rio" path="res://materials/wall.tres" id="2_0b4ue"]
-[ext_resource type="Texture2D" uid="uid://cyjfrhd8n5jy0" path="res://icon.svg" id="2_oi3di"]
 [ext_resource type="PackedScene" uid="uid://vtk75vmymax" path="res://scenes/demon.tscn" id="3_oi3di"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0tk4"]
@@ -20,10 +19,14 @@ sky = SubResource("Sky_r3fl7")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_oi3di"]
+vertices = PackedVector3Array(-21.3554, 0.429387, -33.9271, -21.3554, 0.429387, 3.57289, 13.6446, 0.429387, 3.57289, 13.6446, 0.429387, -33.9271)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_i5arm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wc5p8"]
-size = Vector3(1.93805, 1, 1.92346)
+size = Vector3(36.2141, 1, 40.7275)
 
 [node name="world" type="Node3D"]
 
@@ -34,48 +37,47 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jka67")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-0.819174, -0.303487, -0.486673, -0.308356, 0.948508, -0.0724563, 0.483602, 0.0907145, -0.870574, -2.11552, 2.02269, 3.68447)
-texture = ExtResource("2_oi3di")
+[node name="player" parent="." instance=ExtResource("1_vonw3")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(18.5093, 0, 0, 0, 1, 0, 0, 0, 19.5865, -3.83224, 0, -15.0205)
+[node name="demon" parent="." instance=ExtResource("3_oi3di")]
+transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -3.92949)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(0.999994, 0.00335406, 0.000286198, -0.00335344, 0.999992, -0.00215518, -0.000293424, 0.00215421, 0.999997, 0, 0, 0)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_oi3di")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83224, 0, -15.0205)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(18.6243, 0.0619475, 0.00580817, -0.0624559, 18.4692, -0.0437378, -0.00546485, 0.0397869, 20.2942, -0.143059, 0, 0.14306)
 mesh = SubResource("PlaneMesh_i5arm")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999984, 0.00180054, -0.425249, -0.0126348)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.19929, 0, 0, 0, 1, -0.0180893, -0.667227, 0.257522)
 shape = SubResource("BoxShape3D_wc5p8")
 debug_color = Color(7.70092e-07, 0.317908, 0.37484, 0.42)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(18.5093, 0, 0, 0, 1, 0, 0, 0, 19.5865, -3.83224, 0, -15.0205)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(0.324865, 0, 0, 0, 7, 0, 0, 0, 0.0100069, 0.00291152, 2.36566, 0.987863)
 use_collision = true
 size = Vector3(6.11767, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(0.324865, 0, 0, 0, 7, 0, 0, 0, 0.0100069, 0.00291154, 2.36566, -1.00012)
 size = Vector3(6.11767, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 7, 0, -0.306998, 0, -4.37416e-10, 0.9895, 2.34175, 0.00457573)
 size = Vector3(6.52759, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 7, 0, -0.306998, 0, -4.37416e-10, -0.984427, 2.34175, 0.00457585)
 size = Vector3(6.52759, 0.737411, 1)
 material = ExtResource("2_0b4ue")
-
-[node name="player" parent="." instance=ExtResource("1_vonw3")]
-
-[node name="demon" parent="." instance=ExtResource("3_oi3di")]
-transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -3.92949)
