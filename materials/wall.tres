@@ -1,4 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dbe3cb4st6rio"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dbe3cb4st6rio"]
+
+[ext_resource type="Texture2D" uid="uid://bmo808fl2b6e8" path="res://materials/the-backrooms-wallpaper-texture/source/ttx_0.png" id="1_yy8ec"]
+[ext_resource type="Texture2D" uid="uid://75483507jb17" path="res://materials/the-backrooms-wallpaper-texture/textures/normal.jpeg" id="2_n5hax"]
 
 [resource]
-albedo_color = Color(1, 0.992157, 0.588235, 1)
+albedo_texture = ExtResource("1_yy8ec")
+normal_enabled = true
+normal_texture = ExtResource("2_n5hax")
+uv1_scale = Vector3(7.43, 1, 1)

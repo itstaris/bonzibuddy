@@ -81,3 +81,8 @@ material = ExtResource("2_0b4ue")
 transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 7, 0, -0.306998, 0, -4.37416e-10, -0.984427, 2.34175, 0.00457585)
 size = Vector3(6.52759, 0.737411, 1)
 material = ExtResource("2_0b4ue")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1.34193e-08, 0, 0.0105893, 0, 6.99993, 0, -0.306998, 0, -4.62873e-10, -0.42425, 2.34175, 0.311082)
+size = Vector3(4.53079, 0.737411, 1)
+material = ExtResource("2_0b4ue")
