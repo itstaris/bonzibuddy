@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhckrvng2l32w"]
+[gd_scene load_steps=12 format=3 uid="uid://bhckrvng2l32w"]
 
+[ext_resource type="Script" uid="uid://bbmm4knvvps5f" path="res://level.gd" id="1_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://proto_controller/proto_controller.tscn" id="1_vonw3"]
 [ext_resource type="Material" uid="uid://dbe3cb4st6rio" path="res://materials/wall.tres" id="2_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://vtk75vmymax" path="res://scenes/demon.tscn" id="3_oi3di"]
@@ -20,15 +21,18 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oi3di"]
-vertices = PackedVector3Array(-21.3554, 0.429387, -33.9271, -21.3554, 0.429387, 3.57289, 13.6446, 0.429387, 3.57289, 13.6446, 0.429387, -33.9271)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-21.3554, 0.483128, -20.9271, -12.3554, 0.483128, -20.9271, -12.3554, 0.483128, -22.9271, -11.6054, 0.483128, -23.1771, -11.6054, 0.483128, -33.9271, -21.3554, 0.483128, -33.9271, -10.8554, 0.483128, -22.9271, 13.6446, 0.483128, -33.9271, -10.8554, 0.483128, 3.5729, 13.6446, 0.233128, 3.5729, -21.3554, 0.483128, 3.5729, -12.3554, 0.483128, 3.5729)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 7), PackedInt32Array(11, 10, 1), PackedInt32Array(1, 10, 0)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i5arm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wc5p8"]
 size = Vector3(36.2141, 1, 40.7275)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oi3di"]
+
 [node name="world" type="Node3D"]
+script = ExtResource("1_0b4ue")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.821274, -0.250603, 0.512549, -0.0672345, 0.849597, 0.52313, -0.566558, -0.464094, 0.680903, -13.7021, 0, -17.3313)
@@ -38,9 +42,6 @@ shadow_enabled = true
 environment = SubResource("Environment_jka67")
 
 [node name="player" parent="." instance=ExtResource("1_vonw3")]
-
-[node name="demon" parent="." instance=ExtResource("3_oi3di")]
-transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -18.4125)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_oi3di")
@@ -86,6 +87,13 @@ material = ExtResource("2_0b4ue")
 transform = Transform3D(-1.34193e-08, 0, 0.0105893, 0, 6.99993, 0, -0.306998, 0, -4.62873e-10, -0.42425, 2.34175, 0.311082)
 size = Vector3(4.53079, 0.737411, 1)
 material = ExtResource("2_0b4ue")
+
+[node name="demon" parent="." instance=ExtResource("3_oi3di")]
+transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -18.4125)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="demon"]
+visible = false
+mesh = SubResource("CapsuleMesh_oi3di")
 
 [connection signal="body_entered" from="demon/Area3D" to="player" method="_on_area_3d_body_entered"]
 
