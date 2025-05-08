@@ -61,6 +61,7 @@ debug_color = Color(7.70092e-07, 0.317908, 0.37484, 0.42)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(18.5093, 0, 0, 0, 1, 0, 0, 0, 19.5865, -3.83224, 0, -15.0205)
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(0.324865, 0, 0, 0, 7, 0, 0, 0, 0.0100069, 0.00291152, 2.36566, 0.987863)
@@ -90,6 +91,10 @@ material = ExtResource("2_0b4ue")
 
 [node name="demon" parent="." instance=ExtResource("3_oi3di")]
 transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -18.4125)
+collision_layer = 2
+
+[node name="Area3D" parent="demon" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00768769, 0, -0.000618935)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="demon"]
 visible = false

@@ -1,11 +1,18 @@
 extends CharacterBody3D
 
 @onready var nav = $NavigationAgent3D
+@onready var area = $Area3D
 @onready var player: Node3D = get_parent().get_node("player")
 
 var speed = 4.0
 var gravity = 9.8
 
+func _ready():
+	area.connect("body_entered", Callable(self, "_on_body_entered"))
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("player"):
+		get_tree().reload_current_scene()
 
 func _process(delta):
 	if not is_on_floor():
