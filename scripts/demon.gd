@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var area = $Area3D
 @onready var player: Node3D = get_parent().get_node("player")
 
-@onready var footstep_player := $footstep
+@onready var footstep_player: AudioStreamPlayer3D = $footstep
 
 var step_timer := 0.0
 @export var step_interval := 0.5  # tempo entre passos
@@ -36,7 +36,7 @@ func _process(delta):
 	
 	velocity = velocity.move_toward(new_velocity,0.25)
 	move_and_slide()
-	footstep_player.play()
+	footstep_player.play
 	
 func target_position(target):
 	nav.target_position = target
@@ -46,7 +46,7 @@ func _physics_process(delta):
 	if velocity.length() > min_velocity:
 		step_timer -= delta
 		if step_timer <= 0.0:
-			footstep_player.play()
+			
 			step_timer = step_interval
 		else:
 			step_timer = 0.0  # reseta se parou
