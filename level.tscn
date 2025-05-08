@@ -21,8 +21,8 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oi3di"]
-vertices = PackedVector3Array(-21.3554, 0.483128, -20.9271, -12.3554, 0.483128, -20.9271, -12.3554, 0.483128, -22.9271, -11.6054, 0.483128, -23.1771, -11.6054, 0.483128, -33.9271, -21.3554, 0.483128, -33.9271, -10.8554, 0.483128, -22.9271, 13.6446, 0.483128, -33.9271, -10.8554, 0.483128, 3.5729, 13.6446, 0.233128, 3.5729, -21.3554, 0.483128, 3.5729, -12.3554, 0.483128, 3.5729)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 7), PackedInt32Array(11, 10, 1), PackedInt32Array(1, 10, 0)]
+vertices = PackedVector3Array(-25.842, 0.483128, -57.1993, -25.842, 0.483128, -55.4493, 18.908, 0.483128, -55.4493, 18.908, 0.483128, -57.1993, -25.842, 0.483128, -20.9493, -12.342, 0.483128, -20.9493, -12.092, 0.483128, -23.1993, -25.842, 0.483128, -53.9493, -10.842, 0.483128, -22.9493, -10.842, 0.483128, -21.4493, 18.908, 0.233128, -21.6993, 18.908, 0.483128, -53.9493, -10.842, 0.483128, 3.55065, 18.908, 0.233128, 3.80065, -25.842, 0.483128, 3.05065, -12.342, 0.483128, 3.05065, -12.342, 0.483128, 5.05065, -11.592, 0.483128, 5.30065, -25.842, 0.483128, 26.3007, -11.592, 0.233128, 26.3007, -10.842, 0.233128, 5.05065, 18.908, 0.233128, 25.8007, 19.408, 0.233128, 26.3007)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 6, 10), PackedInt32Array(10, 6, 11), PackedInt32Array(11, 6, 7), PackedInt32Array(9, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(4, 5, 14), PackedInt32Array(14, 5, 15), PackedInt32Array(14, 15, 16), PackedInt32Array(16, 17, 14), PackedInt32Array(14, 17, 19), PackedInt32Array(14, 19, 18), PackedInt32Array(17, 20, 19), PackedInt32Array(19, 20, 21), PackedInt32Array(21, 20, 13), PackedInt32Array(20, 12, 13), PackedInt32Array(21, 22, 19)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i5arm"]
 
@@ -50,7 +50,7 @@ navigation_mesh = SubResource("NavigationMesh_oi3di")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83224, 0, -15.0205)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(18.6243, 0.0619475, 0.00580817, -0.0624559, 18.4692, -0.0437378, -0.00546485, 0.0397869, 20.2942, -0.143059, 0, 0.14306)
+transform = Transform3D(23.8545, 0.0619475, 0.0122033, -0.0799951, 18.4692, -0.0918956, -0.00699952, 0.0397869, 42.6392, -0.143059, 0, 0.14306)
 mesh = SubResource("PlaneMesh_i5arm")
 skeleton = NodePath("../../..")
 
@@ -64,28 +64,38 @@ transform = Transform3D(18.5093, 0, 0, 0, 1, 0, 0, 0, 19.5865, -3.83224, 0, -15.
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(0.324865, 0, 0, 0, 7, 0, 0, 0, 0.0100069, 0.00291152, 2.36566, 0.987863)
+transform = Transform3D(0.419437, 0, 0, 0, 6.97863, 0, 0, 0, 0.0100069, 0.00291152, 2.36566, 2.14162)
 use_collision = true
 size = Vector3(6.11767, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(0.324865, 0, 0, 0, 7, 0, 0, 0, 0.0100069, 0.00291154, 2.36566, -1.00012)
+transform = Transform3D(0.419448, 0, 0, 0, 9.03801, 0, 0, 0, 0.0129203, 0.00291154, 2.36566, -2.02221)
 size = Vector3(6.11767, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 7, 0, -0.306998, 0, -4.37416e-10, 0.9895, 2.34175, 0.00457573)
-size = Vector3(6.52759, 0.737411, 1)
+transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 6.99992, 0, -0.306998, 0, -4.37416e-10, 1.26729, 2.34175, -0.0410495)
+size = Vector3(14.3438, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 7, 0, -0.306998, 0, -4.37416e-10, -0.984427, 2.34175, 0.00457585)
-size = Vector3(6.52759, 0.737411, 1)
+transform = Transform3D(-1.42003e-08, 0, 0.0105893, 0, 6.99996, 0, -0.306998, 0, -4.37416e-10, -1.23402, 2.34175, 0.0300732)
+size = Vector3(14.1179, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(-1.34193e-08, 0, 0.0105893, 0, 6.99993, 0, -0.306998, 0, -4.62873e-10, -0.42425, 2.34175, 0.311082)
+transform = Transform3D(-1.34193e-08, 0, 0.0105893, 0, 6.9999, 0, -0.306998, 0, -4.62873e-10, -0.758778, 2.34175, 1.46639)
+size = Vector3(4.53079, 0.737411, 1)
+material = ExtResource("2_0b4ue")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-1.34193e-08, 0, 0.0105893, 0, 6.9999, 0, -0.306998, 0, -4.62873e-10, 0.342868, 2.34175, 1.46639)
+size = Vector3(4.53079, 0.737411, 1)
+material = ExtResource("2_0b4ue")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(0.00325089, 0, 0, 0, 48.9986, 0, 0, 0, 0.00325089, 0.358396, 18.7338, 1.36113)
 size = Vector3(4.53079, 0.737411, 1)
 material = ExtResource("2_0b4ue")
 
@@ -93,7 +103,7 @@ material = ExtResource("2_0b4ue")
 transform = Transform3D(2.985, 0, 0, 0, 2.985, 0, 0, 0, 2.985, -1.0587, 1.19603, -18.4125)
 collision_layer = 2
 
-[node name="Area3D" parent="demon" index="0"]
+[node name="Area3D" parent="demon" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00768769, 0, -0.000618935)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="demon"]

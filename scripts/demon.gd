@@ -4,6 +4,12 @@ extends CharacterBody3D
 @onready var area = $Area3D
 @onready var player: Node3D = get_parent().get_node("player")
 
+@onready var footstep_player := $footstep
+
+var step_timer := 0.0
+@export var step_interval := 0.5  # tempo entre passos
+@export var min_velocity := 0.1   # movimento mínimo pra considerar que está andando
+
 var speed = 4.0
 var gravity = 9.8
 
@@ -30,6 +36,22 @@ func _process(delta):
 	
 	velocity = velocity.move_toward(new_velocity,0.25)
 	move_and_slide()
+	footstep_player.play()
 	
 func target_position(target):
 	nav.target_position = target
+	
+func _physics_process(delta):
+	# lógica de movimento do inimigo (já existente)
+	if velocity.length() > min_velocity:
+		step_timer -= delta
+		if step_timer <= 0.0:
+			footstep_player.play()
+			step_timer = step_interval
+		else:
+			step_timer = 0.0  # reseta se parou
+
+#func play_footstep():
+	#if footstep_player.playing:
+		#footstep_player.stop()
+	#footstep_player.play()
